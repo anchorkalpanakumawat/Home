@@ -1909,6 +1909,50 @@ footer p:first-child {
 }
 
 @media (max-width: 768px) {
+    .video-card {
+        min-width: 90vw !important;
+        max-width: 90vw !important;
+        margin: 0 auto;
+    }
+    
+    .video-wrapper {
+        padding-bottom: 56.25%;
+    }
+    
+    .video-info {
+        padding: 1.5rem;
+    }
+    
+    .video-info h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .video-info p {
+        font-size: 0.95rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-card {
+        min-width: 95vw !important;
+        max-width: 95vw !important;
+    }
+    
+    .video-info {
+        padding: 1.2rem;
+    }
+    
+    .video-info h3 {
+        font-size: 1.2rem !important;
+    }
+    
+    .video-info p {
+        font-size: 0.9rem !important;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 768px) {
     nav {
         padding: 1rem 0;
     }
