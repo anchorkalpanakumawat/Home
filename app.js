@@ -366,6 +366,64 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ===================================
+// ADVANCED VIDEO HANDLING - SHORTS & REGULAR
+// ===================================
+
+// Detect when YouTube iframe fails to load (for Shorts)
+document.addEventListener('DOMContentLoaded', () => {
+    const videoCards = document.querySelectorAll('[data-video-type="short"]');
+    
+    videoCards.forEach(card => {
+        const wrapper = card.querySelector('.video-wrapper');
+        const iframe = wrapper.querySelector('.video-iframe');
+        const fallbackLink = wrapper.querySelector('.video-link-overlay');
+        
+        if (iframe && fallbackLink) {
+            // Try to detect if iframe fails to load
+            iframe.addEventListener('load', () => {
+                // Check if iframe loaded successfully
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    // If we can't access it, it might have loaded
+                    // Keep iframe visible
+                } catch (e) {
+                    // Cross-origin restriction - video is probably loading
+                }
+            });
+            
+            // Fallback after 3 seconds if iframe seems blocked
+            setTimeout(() => {
+                // Check if user has interacted with iframe
+                if (!iframe.getAttribute('data-interacted')) {
+                    // YouTube Shorts often don't allow embed
+                    // Show fallback link instead
+                    iframe.style.display = 'none';
+                    fallbackLink.style.display = 'block';
+                }
+            }, 3000);
+            
+            // Mark as interacted if user clicks
+            iframe.addEventListener('click', () => {
+                iframe.setAttribute('data-interacted', 'true');
+            });
+        }
+    });
+});
+
+// Better error handling for all video iframes
+const allIframes = document.querySelectorAll('.video-wrapper iframe');
+allIframes.forEach(iframe => {
+    iframe.addEventListener('error', () => {
+        const wrapper = iframe.closest('.video-wrapper');
+        const fallback = wrapper.querySelector('.video-link-overlay');
+        if (fallback) {
+            iframe.style.display = 'none';
+            fallback.style.display = 'block';
+        }
+    });
+});
+
+// ===================================
 // VIDEO LAZY LOADING
 // ===================================
 
