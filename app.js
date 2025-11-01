@@ -290,30 +290,52 @@ if (statsSection) {
 }
 
 // ===================================
-// FORM SUBMISSION HANDLER
+// FORM SUBMISSION HANDLER - WEB3FORMS
 // ===================================
 
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        // Get button and store original HTML
+        const submitBtn = contactForm.querySelector('.submit-btn-modern');
+        const originalHTML = submitBtn.innerHTML;
+        
+        // Show loading state
+        submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+        submitBtn.disabled = true;
         
         // Get form data
         const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
         
-        // Show success message
-        alert('Thank you for your message! I will get back to you soon.');
-        
-        // Reset form
-        contactForm.reset();
-        
-        // Optional: Send form data to backend
-        // fetch('/submit-form', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(data)
-        // });
+        try {
+            // Send to Web3Forms API
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // Success! Show confirmation
+                alert('✅ Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            } else {
+                // API returned an error
+                throw new Error(data.message || 'Something went wrong');
+            }
+            
+        } catch (error) {
+            // Handle errors
+            console.error('Form submission error:', error);
+            alert('❌ Oops! Something went wrong. Please try again or contact via:\n\n📧 Email: anchorkalpanakumawat@gmail.com\n📱 WhatsApp: +91 94293 83225');
+        } finally {
+            // Reset button state
+            submitBtn.innerHTML = originalHTML;
+            submitBtn.disabled = false;
+        }
     });
 }
 
@@ -514,8 +536,8 @@ scrollToTopBtn.addEventListener('click', () => {
 // CONSOLE LOG FOR DEBUGGING
 // ===================================
 
-console.log('✅ Website Initialized Successfully');
-console.log('✅ Active Menu Highlighting: Enabled');
-console.log('✅ Smooth Scrolling: Enabled');
-console.log('✅ Mobile Menu: Enabled');
-console.log('✅ Animations: Enabled');
+console.log('âœ… Website Initialized Successfully');
+console.log('âœ… Active Menu Highlighting: Enabled');
+console.log('âœ… Smooth Scrolling: Enabled');
+console.log('âœ… Mobile Menu: Enabled');
+console.log('âœ… Animations: Enabled');
