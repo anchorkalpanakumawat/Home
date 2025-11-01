@@ -1416,6 +1416,15 @@ section {
     font-weight: 600;
 }
 
+.contact-card a {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+    word-break: break-word;
+    display: block;
+}
+
 .contact-card a,
 .contact-card p {
     color: rgba(255, 255, 255, 0.95) !important;
