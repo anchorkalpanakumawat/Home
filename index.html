@@ -13,1493 +13,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        :root {
-            --primary-purple: #6A0572;
-            --electric-pink: #FF006E;
-            --vibrant-orange: #FF5722;
-            --neon-cyan: #00F5FF;
-            --deep-blue: #1A237E;
-            --golden-yellow: #FFC107;
-            --hot-magenta: #E91E63;
-            --lime-green: #76FF03;
-            --dark-navy: #0A0E27;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-4: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            --gradient-5: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #ffffff;
-            background-color: var(--dark-navy);
-            overflow-x: hidden;
-        }
-        
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        /* Navigation - Glassmorphism */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 14, 39, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 1.5rem 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        nav.scrolled {
-            padding: 1rem 0;
-            background: rgba(10, 14, 39, 0.95);
-            box-shadow: 0 10px 40px rgba(255, 0, 110, 0.3);
-        }
-        
-        .nav-container {
-            width: 100%;
-            padding: 0 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: var(--gradient-4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--gradient-2);
-            transition: width 0.3s ease;
-            border-radius: 10px;
-        }
-        
-        .nav-links a:hover {
-            color: var(--electric-pink);
-            transform: translateY(-2px);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: var(--electric-pink);
-            cursor: pointer;
-        }
-        
-        /* Hero Section - Minimal Elegant with Photo Focus */
-        .hero {
-            position: relative;
-            height: 100vh;
-            width: 100vw;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, #0A0E27 0%, #1a1a2e 100%);
-        }
-        
-        .hero-left {
-            position: relative;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5%;
-            z-index: 2;
-        }
-        
-        .hero-right {
-            position: relative;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5%;
-        }
-        
-        .hero-image-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            height: 85vh;
-            overflow: hidden;
-            border-radius: 300px 300px 0 0;
-            box-shadow: 0 40px 100px rgba(255, 0, 110, 0.4),
-                        0 0 100px rgba(0, 245, 255, 0.3),
-                        inset 0 0 100px rgba(255, 255, 255, 0.1);
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            animation: imageFloat 6s ease-in-out infinite;
-        }
-        
-        @keyframes imageFloat {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.02); }
-        }
-        
-        .hero-image-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                transparent 30%, 
-                rgba(255, 0, 110, 0.1) 50%, 
-                transparent 70%);
-            animation: shimmerSweep 4s infinite;
-            z-index: 2;
-        }
-        
-        @keyframes shimmerSweep {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        .hero-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(1.1) contrast(1.1);
-        }
-        
-        .hero-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle, rgba(255, 0, 110, 0.3) 0%, transparent 70%);
-            filter: blur(60px);
-            z-index: 1;
-            animation: glowPulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-        }
-        
-        .hero-video-bg {
-            display: none;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 70% 50%, rgba(0, 245, 255, 0.05) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-            text-align: left;
-            animation: fadeInLeft 1.2s ease-out;
-        }
-        
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .hero-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 1.5rem;
-            font-weight: 400;
-        }
-        
-        .hero-icon {
-            display: inline-block;
-            font-size: 3rem;
-            color: #FF006E;
-            margin-bottom: 2rem;
-            animation: iconPulse 3s infinite;
-            filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.6));
-        }
-        
-        @keyframes iconPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-        
-        .hero h1 {
-            font-size: 4.5rem;
-            color: white;
-            margin-bottom: 2rem;
-            line-height: 1.1;
-            font-weight: 700;
-            letter-spacing: -2px;
-        }
-        
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, #FF006E 0%, #00F5FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-            position: relative;
-        }
-        
-        .hero h1 .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #FF006E, #00F5FF);
-            border-radius: 10px;
-        }
-        
-        .hero-tagline {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            font-weight: 300;
-            max-width: 500px;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 1.2rem 3rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 1px;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #FF006E 0%, #FF5722 100%);
-            color: #ffffff;
-            box-shadow: 0 10px 40px rgba(255, 0, 110, 0.4);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(255, 0, 110, 0.6);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: white;
-            transform: translateY(-3px);
-        }
-        
-        /* Floating particles - Minimal Subtle Effect */
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-            opacity: 0.3;
-        }
-        
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            animation: floatMinimal 20s infinite;
-            filter: blur(3px);
-        }
-        
-        @keyframes floatMinimal {
-            0%, 100% { 
-                transform: translateY(0) translateX(0); 
-                opacity: 0; 
-            }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { 
-                transform: translateY(-100vh) translateX(50px); 
-                opacity: 0; 
-            }
-        }
-        
-        /* Section Styling - Full Width */
-        section {
-            padding: 6rem 0;
-            width: 100%;
-            position: relative;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-            padding: 0 5%;
-        }
-        
-        .section-header h2 {
-            font-size: 4rem;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-            animation: titleFloat 3s ease-in-out infinite;
-        }
-        
-        @keyframes titleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--gradient-4);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 0, 110, 0.6);
-        }
-        
-        .section-header p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 2rem;
-        }
-        
-        /* Featured Videos Section - Creative Full Width with Scroll */
-        #videos {
-            background: linear-gradient(180deg, var(--dark-navy) 0%, #1a0033 100%);
-            padding: 6rem 0;
-            overflow: hidden;
-        }
-        
-        .videos-scroll-container {
-            position: relative;
-            padding: 0 5%;
-        }
-        
-        .videos-grid {
-            display: flex;
-            gap: 3rem;
-            margin-top: 4rem;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-behavior: smooth;
-            padding-bottom: 2rem;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255, 0, 110, 0.5) rgba(255, 255, 255, 0.1);
-        }
-        
-        .videos-grid::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .videos-grid::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        
-        .videos-grid::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, #FF006E, #00F5FF);
-            border-radius: 10px;
-            transition: background 0.3s ease;
-        }
-        
-        .videos-grid::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(90deg, #FF5722, #76FF03);
-        }
-        
-        .video-card {
-            min-width: 450px;
-            flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(255, 0, 110, 0.3);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .video-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 70px rgba(255, 0, 110, 0.5),
-                        0 0 50px rgba(0, 245, 255, 0.3);
-            border-color: var(--electric-pink);
-        }
-        
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .video-info {
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-        }
-        
-        .video-info h3 {
-            font-size: 1.6rem;
-            background: var(--gradient-4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.8rem;
-        }
-        
-        .video-info p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-        
-        .scroll-indicator {
-            text-align: center;
-            margin-top: 2rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-        
-        .scroll-indicator i {
-            font-size: 1.2rem;
-            animation: scrollArrow 2s infinite;
-        }
-        
-        @keyframes scrollArrow {
-            0%, 100% { transform: translateX(0); opacity: 1; }
-            50% { transform: translateX(10px); opacity: 0.5; }
-        }
-        
-        .scroll-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .scroll-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .scroll-btn:hover {
-            background: linear-gradient(135deg, #FF006E, #00F5FF);
-            border-color: white;
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.4);
-        }
-        
-        /* About Section - Creative Split Design */
-        #about {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            padding: 8rem 0;
-        }
-        
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            padding: 0 5%;
-        }
-        
-        .about-image {
-            position: relative;
-            perspective: 1000px;
-        }
-        
-        .about-image img {
-            width: 100%;
-            border-radius: 30px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4),
-                        0 0 50px rgba(255, 0, 110, 0.4);
-            transition: transform 0.6s ease;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .about-image:hover img {
-            transform: rotateY(10deg) rotateX(5deg) scale(1.05);
-        }
-        
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-        
-        .floating-icon {
-            position: absolute;
-            font-size: 3rem;
-            opacity: 0.6;
-            animation: floatIcon 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px currentColor);
-        }
-        
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(10deg); }
-        }
-        
-        .about-text h2 {
-            font-size: 3.5rem;
-            color: #ffffff;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            line-height: 1.3;
-        }
-        
-        .about-text p {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 1.8rem;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--neon-cyan);
-        }
-        
-        /* Services Section - Futuristic Cards */
-        #services {
-            background: var(--dark-navy);
-            padding: 8rem 5%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #services::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 50%, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 3rem;
-            border-radius: 25px;
-            text-align: center;
-            transition: all 0.5s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .service-card:hover::before {
-            left: 100%;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            border-color: var(--electric-pink);
-            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.4),
-                        inset 0 0 50px rgba(255, 255, 255, 0.1);
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-        }
-        
-        .service-icon {
-            font-size: 4rem;
-            background: var(--gradient-3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 20px rgba(0, 245, 255, 0.6));
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover .service-icon {
-            transform: scale(1.2) rotateY(180deg);
-        }
-        
-        .service-card h3 {
-            font-size: 1.8rem;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        
-        .service-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-        
-        /* Gallery Section - Immersive Design with Scroll */
-        #gallery {
-            background: linear-gradient(180deg, #1a0033 0%, #330867 100%);
-            padding: 8rem 0;
-            overflow: hidden;
-        }
-        
-        .gallery-scroll-container {
-            position: relative;
-            padding: 0 5%;
-        }
-        
-        .gallery-grid {
-            display: flex;
-            gap: 2rem;
-            margin-top: 4rem;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-behavior: smooth;
-            padding-bottom: 2rem;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(0, 245, 255, 0.5) rgba(255, 255, 255, 0.1);
-        }
-        
-        .gallery-grid::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .gallery-grid::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        
-        .gallery-grid::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, #00F5FF, #FF006E);
-            border-radius: 10px;
-            transition: background 0.3s ease;
-        }
-        
-        .gallery-grid::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(90deg, #76FF03, #FFC107);
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            flex-shrink: 0;
-        }
-        
-        .gallery-item.wide {
-            min-width: 500px;
-            height: 350px;
-        }
-        
-        .gallery-item.tall {
-            min-width: 350px;
-            height: 450px;
-        }
-        
-        .gallery-item.square {
-            min-width: 400px;
-            height: 400px;
-        }
-        
-        .gallery-item:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 40px rgba(0, 245, 255, 0.6),
-                        0 0 80px rgba(255, 0, 110, 0.4);
-            transform: scale(1.05);
-            z-index: 10;
-        }
-        
-        .gallery-item img,
-        .gallery-item iframe {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        
-        .gallery-item:hover img,
-        .gallery-item:hover iframe {
-            transform: scale(1.15) rotate(2deg);
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.9) 0%, rgba(0, 245, 255, 0.9) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        
-        .gallery-overlay i {
-            font-size: 4rem;
-            color: white;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
-            animation: pulse 1.5s infinite;
-        }
-        
-        /* Testimonials Section - Glassmorphism */
-        #testimonials {
-            background: var(--dark-navy);
-            padding: 8rem 5%;
-        }
-        
-        .testimonials-container {
-            max-width: 1000px;
-            margin: 4rem auto;
-            position: relative;
-        }
-        
-        .testimonial {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 4rem;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.3);
-            text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .testimonial::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 0, 110, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-        
-        .quote-icon {
-            font-size: 4rem;
-            background: var(--gradient-4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 20px rgba(255, 193, 7, 0.6));
-        }
-        
-        .testimonial-text {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 2;
-            margin-bottom: 2.5rem;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .testimonial-author {
-            font-weight: 700;
-            color: #ffffff;
-            font-size: 1.3rem;
-            text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
-        }
-        
-        .testimonial-company {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1rem;
-            margin-top: 0.5rem;
-        }
-        
-        .testimonial-dots {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-        
-        .dot {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .dot.active {
-            background: var(--electric-pink);
-            border-color: white;
-            box-shadow: 0 0 20px var(--electric-pink);
-            transform: scale(1.3);
-        }
-        
-        .dot:hover {
-            background: var(--neon-cyan);
-            transform: scale(1.2);
-        }
-        
-        /* Contact Section - Futuristic Design */
-        #contact {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            padding: 8rem 5%;
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            max-width: none;
-            margin: 0 auto;
-        }
-        
-        .contact-info {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            padding: 4rem;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .contact-info h3 {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 3rem;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--neon-cyan);
-        }
-        
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
-        }
-        
-        .contact-icon {
-            font-size: 2.5rem;
-            background: var(--gradient-3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            width: 60px;
-            filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.6));
-        }
-        
-        .contact-details h4 {
-            font-size: 1.2rem;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        .contact-details p,
-        .contact-details a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-        
-        .contact-details a:hover {
-            color: var(--neon-cyan);
-        }
-        
-        .contact-form {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            padding: 4rem;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .form-group {
-            margin-bottom: 2rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1.2rem 1.5rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.05rem;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--neon-cyan);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 180px;
-        }
-        
-        .submit-btn {
-            width: 100%;
-            padding: 1.5rem;
-            background: var(--gradient-2);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.6);
-        }
-        
-        /* Social Media Section - Neon Vibes */
-        .social-media {
-            background: var(--dark-navy);
-            color: white;
-            padding: 5rem 5%;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .social-media::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(255, 0, 110, 0.2) 0%, transparent 70%);
-        }
-        
-        .social-media h3 {
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            background: var(--gradient-4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            color: white;
-            border-radius: 50%;
-            font-size: 2rem;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: var(--gradient-2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease;
-            z-index: -1;
-        }
-        
-        .social-link:hover::before {
-            width: 200%;
-            height: 200%;
-        }
-        
-        .social-link:hover {
-            transform: translateY(-10px) scale(1.15) rotate(360deg);
-            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.6),
-                        0 0 50px rgba(0, 245, 255, 0.4);
-            border-color: var(--neon-cyan);
-        }
-        
-        /* Footer - Dark Elegant */
-        footer {
-            background: #000000;
-            color: white;
-            text-align: center;
-            padding: 3rem 5%;
-            border-top: 2px solid var(--electric-pink);
-        }
-        
-        footer p {
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        footer p:first-child {
-            font-size: 1.3rem;
-            background: var(--gradient-4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-        }
-        
-        /* Floating WhatsApp Button - Neon Style */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.6);
-            z-index: 999;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            animation: bounce 2s infinite;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.2) rotate(15deg);
-            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.8),
-                        0 0 50px rgba(37, 211, 102, 0.6);
-            animation: none;
-        }
-        
-        /* Responsive Design - Full Page Experience */
-        @media (max-width: 968px) {
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                flex-direction: column;
-                background: rgba(10, 14, 39, 0.98);
-                backdrop-filter: blur(20px);
-                width: 100%;
-                padding: 3rem;
-                box-shadow: 0 10px 40px rgba(255, 0, 110, 0.3);
-                transition: left 0.4s ease;
-                border-bottom: 3px solid var(--electric-pink);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .hero {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto;
-                height: auto;
-                min-height: 100vh;
-                padding: 6rem 0 3rem;
-            }
-            
-            .hero-left {
-                order: 2;
-                padding: 3rem 5%;
-            }
-            
-            .hero-right {
-                order: 1;
-                padding: 3rem 5% 2rem;
-                height: 60vh;
-            }
-            
-            .hero-image-container {
-                height: 55vh;
-                max-width: 400px;
-            }
-            
-            .hero-content {
-                text-align: center;
-                max-width: 100%;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1.1rem;
-                max-width: 100%;
-            }
-            
-            .hero-icon {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .video-card {
-                min-width: 350px;
-            }
-            
-            .gallery-item.wide,
-            .gallery-item.tall,
-            .gallery-item.square {
-                min-width: 300px;
-                height: 300px;
-            }
-            
-            .about-container {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            section {
-                padding: 5rem 5%;
-            }
-            
-            .section-header h2 {
-                font-size: 3rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 580px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1rem;
-            }
-            
-            .hero-icon {
-                font-size: 2rem;
-            }
-            
-            .hero-right {
-                height: 50vh;
-            }
-            
-            .hero-image-container {
-                height: 45vh;
-                max-width: 300px;
-                border-radius: 200px 200px 0 0;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-            }
-            
-            .btn {
-                width: 100%;
-                padding: 1.2rem 2rem;
-            }
-            
-            .video-card {
-                min-width: 280px;
-            }
-            
-            .gallery-item.wide,
-            .gallery-item.tall,
-            .gallery-item.square {
-                min-width: 250px;
-                height: 250px;
-            }
-            
-            .section-header h2 {
-                font-size: 2.2rem;
-            }
-            
-            .logo {
-                font-size: 1.5rem;
-            }
-            
-            .about-text h2 {
-                font-size: 2.5rem;
-            }
-            
-            .service-card,
-            .contact-info,
-            .contact-form,
-            .testimonial {
-                padding: 2.5rem 1.5rem;
-            }
-            
-            .whatsapp-float {
-                width: 60px;
-                height: 60px;
-                font-size: 2rem;
-                bottom: 30px;
-                right: 30px;
-            }
-            
-            .social-link {
-                width: 70px;
-                height: 70px;
-                font-size: 1.8rem;
-            }
-        }
-        
-        /* Animation classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -1510,12 +30,12 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -1523,9 +43,9 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="particles">
-            <div class="particle" style="left: 15%; width: 8px; height: 8px; animation-delay: 0s; background: radial-gradient(circle, rgba(255, 0, 110, 0.3), transparent);"></div>
-            <div class="particle" style="left: 45%; width: 6px; height: 6px; animation-delay: 4s; background: radial-gradient(circle, rgba(0, 245, 255, 0.2), transparent);"></div>
-            <div class="particle" style="left: 75%; width: 7px; height: 7px; animation-delay: 8s; background: radial-gradient(circle, rgba(255, 0, 110, 0.2), transparent);"></div>
+            <div class="particle" style="left: 15%; width: 8px; height: 8px; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 45%; width: 6px; height: 6px; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 75%; width: 7px; height: 7px; animation-delay: 8s;"></div>
         </div>
         <div class="hero-overlay"></div>
         
@@ -1540,7 +60,7 @@
                     <span class="highlight">The Mic</span>, <br>
                     Magic Happens
                 </h1>
-                <p class="hero-tagline">I'm Kalpana Kumawat—bringing energy, elegance, and emotion to every stage. From weddings to corporate galas, I make every moment unforgettable.</p>
+                <p class="hero-tagline">I'm Kalpana Kumawat — bringing energy, elegance, and emotion to every stage. From weddings to corporate galas, I make every moment unforgettable.</p>
                 <div class="hero-buttons">
                     <a href="#videos" class="btn btn-primary">Watch Showreel</a>
                     <a href="#contact" class="btn btn-secondary">Book Me</a>
@@ -1566,8 +86,7 @@
             <div class="videos-grid">
                 <div class="video-card fade-in">
                     <div class="video-wrapper">
-                        <!-- Replace with actual YouTube video ID -->
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/dFGR1F1yozI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h3>Wedding Highlights</h3>
@@ -1576,17 +95,21 @@
                 </div>
                 <div class="video-card fade-in">
                     <div class="video-wrapper">
-                        <!-- Replace with actual YouTube video ID -->
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <a href="https://www.youtube.com/shorts/x8RoBEqhBaU" target="_blank" class="video-link-overlay">
+                            <img src="https://img.youtube.com/vi/x8RoBEqhBaU/maxresdefault.jpg" alt="Wedding Highlights">
+                            <div class="play-button">
+                                <i class="fab fa-youtube"></i>
+                                <span>Watch on YouTube</span>
+                            </div>
+                        </a>
                     </div>
                     <div class="video-info">
-                        <h3>Corporate Launch</h3>
-                        <p>Professional, confident, and engaging corporate event hosting</p>
+                        <h3>Wedding Highlights</h3>
+                        <p>Making every couple's special day memorable with grace and elegance</p>
                     </div>
                 </div>
                 <div class="video-card fade-in">
                     <div class="video-wrapper">
-                        <!-- Replace with actual YouTube video ID -->
                         <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
@@ -1596,7 +119,6 @@
                 </div>
                 <div class="video-card fade-in">
                     <div class="video-wrapper">
-                        <!-- Replace with actual YouTube video ID -->
                         <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
@@ -1606,7 +128,6 @@
                 </div>
                 <div class="video-card fade-in">
                     <div class="video-wrapper">
-                        <!-- Replace with actual YouTube video ID -->
                         <iframe src="https://www.youtube.com/embed/VIDEO_ID_5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
@@ -1632,6 +153,10 @@
 
     <!-- About Section -->
     <section id="about">
+        <div class="section-header fade-in">
+            <h2>💫 About Me</h2>
+            <p>The voice that connects hearts</p>
+        </div>
         <div class="about-container">
             <div class="about-image fade-in">
                 <img src="sub_main.jpg" alt="Anchor Kalpana Kumawat">
@@ -1643,7 +168,7 @@
                 </div>
             </div>
             <div class="about-text fade-in">
-                <h2>Meet Kalpana Kumawat — The Voice That Connects Hearts</h2>
+                <h2>Meet Kalpana Kumawat</h2>
                 <p>Hi! I'm Kalpana Kumawat, a passionate anchor who believes in the power of connection, emotion, and expression.</p>
                 <p>From weddings and corporate galas to award nights and college fests, I've hosted hundreds of events with confidence and charm.</p>
                 <p>My mission is to make every moment memorable — not just for the audience, but for the people behind the event too.</p>
@@ -1702,53 +227,89 @@
         <div class="gallery-scroll-container">
             <div class="section-header fade-in">
                 <h2>📸 Moments from My Stage</h2>
-                <p>Every photo and video here is a story of connection, laughter, and light.</p>
+                <p>Every photo captures a story of connection, laughter, and light.</p>
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item wide fade-in">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop" alt="Event moment 1">
+                    <img src="img_1.jpg" alt="Event moment 1">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <div class="gallery-item tall fade-in">
-                    <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=600&h=800&fit=crop" alt="Event moment 2">
+                    <img src="img_2.jpg" alt="Event moment 2">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <div class="gallery-item square fade-in">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700&h=700&fit=crop" alt="Event moment 3">
+                    <img src="img_3.jpg" alt="Event moment 3">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <div class="gallery-item wide fade-in">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop" alt="Event moment 4">
+                    <img src="img_4.jpg" alt="Event moment 4">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <div class="gallery-item square fade-in">
-                    <img src="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=700&h=700&fit=crop" alt="Event moment 5">
+                    <img src="img_5.jpg" alt="Event moment 5">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <div class="gallery-item tall fade-in">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=800&fit=crop" alt="Event moment 6">
+                    <img src="img_6.jpg" alt="Event moment 6">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
-                <div class="gallery-item wide fade-in">
-                    <img src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=800&h=600&fit=crop" alt="Event moment 7">
+                <div class="gallery-item tall fade-in">
+                    <img src="img_7.jpg" alt="Event moment 6">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
-                <div class="gallery-item square fade-in">
-                    <img src="https://images.unsplash.com/photo-1478147427282-58a87a120781?w=700&h=700&fit=crop" alt="Event moment 8">
+                <div class="gallery-item tall fade-in">
+                    <img src="img_8.jpg" alt="Event moment 6">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item tall fade-in">
+                    <img src="img_9.jpg" alt="Event moment 6">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item tall fade-in">
+                    <img src="img_10.jpg" alt="Event moment 6">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item tall fade-in">
+                    <img src="img_11.jpg" alt="Event moment 6">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item tall fade-in">
+                    <img src="img_12.jpg" alt="Event moment 6">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item tall fade-in">
+                    <img src="img_13.jpg" alt="Event moment 6">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item tall fade-in">
+                    <img src="img_14.jpg" alt="Event moment 6">
                     <div class="gallery-overlay">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -1769,85 +330,178 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <div class="section-header fade-in">
-            <h2>💬 What Clients Say</h2>
-            <p>Kind words from wonderful people</p>
-        </div>
-        <div class="testimonials-container">
-            <div class="testimonial fade-in">
-                <div class="quote-icon">
-                    <i class="fas fa-quote-left"></i>
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section">
+        <div class="stats-wrapper">
+            <h2 class="stats-title">✨ By The Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-icon-minimal">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label-minimal">Events Done</div>
                 </div>
-                <p class="testimonial-text">"Kalpana's grace and confidence brought our event to life! Her energy was infectious and she kept the audience engaged throughout."</p>
-                <p class="testimonial-author">Star Events</p>
-                <p class="testimonial-company">Event Management Company</p>
-            </div>
-            <div class="testimonial-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon-minimal">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="stat-number" data-target="450">0</div>
+                    <div class="stat-label-minimal">Happy Clients</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon-minimal">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="stat-number" data-target="12">0</div>
+                    <div class="stat-label-minimal">Years</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-static">
         <div class="section-header fade-in">
-            <h2>📞 Let's Create Magic On Your Stage!</h2>
-            <p>For bookings and collaborations, reach out directly — I'd love to bring energy to your event.</p>
+            <h2>💬 What Clients Say</h2>
+            <p>Kind words from wonderful people</p>
         </div>
-        <div class="contact-container">
-            <div class="contact-info fade-in">
-                <h3>Get In Touch</h3>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Email</h4>
-                        <a href="mailto:anchorkalpanakumawat@gmail.com">anchorkalpanakumawat@gmail.com</a>
-                    </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card-static fade-in">
+                <div class="quote-icon-static">
+                    <i class="fas fa-quote-left"></i>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Phone / WhatsApp</h4>
-                        <a href="tel:+919429383225">+91 94293 83225</a>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Location</h4>
-                        <p>India (Available for events across India & abroad)</p>
+                <p class="testimonial-text-static">"Kalpana's grace and confidence brought our event to life! Her energy was infectious and she kept the audience engaged throughout."</p>
+                <div class="testimonial-author-info">
+                    <div class="author-avatar-static">SE</div>
+                    <div>
+                        <p class="testimonial-author-static">Star Events</p>
+                        <p class="testimonial-company-static">Event Management Company</p>
+                        <div class="rating-stars-static">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="contact-form fade-in">
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required>
+
+            <div class="testimonial-card-static fade-in">
+                <div class="quote-icon-static">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="testimonial-text-static">"Made our wedding night magical and unforgettable! She knew exactly how to connect with our families and keep the celebration flowing."</p>
+                <div class="testimonial-author-info">
+                    <div class="author-avatar-static">R&R</div>
+                    <div>
+                        <p class="testimonial-author-static">Ritika & Rahul</p>
+                        <p class="testimonial-company-static">Wedding Couple</p>
+                        <div class="rating-stars-static">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+
+            <div class="testimonial-card-static fade-in">
+                <div class="quote-icon-static">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="testimonial-text-static">"Professional, vibrant, and a delight to work with. Her hosting added tremendous value to our corporate launch event."</p>
+                <div class="testimonial-author-info">
+                    <div class="author-avatar-static">AK</div>
+                    <div>
+                        <p class="testimonial-author-static">Viral Joshi</p>
+                        <p class="testimonial-company-static">Event Cordinator</p>
+                        <div class="rating-stars-static">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+                </div>
             </div>
         </div>
     </section>
+
+  
+<!-- Contact Section -->
+<section id="contact" class="contact-modern">
+    <div class="section-header fade-in">
+        <h2>📞 Let's Create Magic Together!</h2>
+        <p>Ready to make your event unforgettable? Get in touch!</p>
+    </div>
+    
+    <div class="contact-wrapper">
+        <!-- Contact Info Cards -->
+        <div class="contact-info-grid">
+            <div class="contact-card fade-in">
+                <div class="contact-card-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h4>Email Me</h4>
+                <a href="mailto:anchorkalpanakumawat@gmail.com" style="word-break: break-word; font-size: 0.95rem;">anchorkalpanakumawat@gmail.com</a>
+            </div>
+
+            <div class="contact-card fade-in">
+                <div class="contact-card-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h4>Call / WhatsApp</h4>
+                <a href="tel:+919429383225">+91 94293 83225</a>
+            </div>
+
+            <div class="contact-card fade-in">
+                <div class="contact-card-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h4>Location</h4>
+                <p>Available Across India & Abroad</p>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-modern fade-in">
+            <h3>Send a Message</h3>
+            <form id="contactForm" action="#" method="POST">
+                <div class="form-row">
+                    <div class="form-group-modern">
+                        <input type="text" id="name" name="name" required placeholder=" ">
+                        <label for="name">Your Name</label>
+                        <span class="form-icon"><i class="fas fa-user"></i></span>
+                    </div>
+                    <div class="form-group-modern">
+                        <input type="email" id="email" name="email" required placeholder=" ">
+                        <label for="email">Your Email</label>
+                        <span class="form-icon"><i class="fas fa-envelope"></i></span>
+                    </div>
+                </div>
+                <div class="form-group-modern">
+                    <input type="tel" id="phone" name="phone" placeholder=" ">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <span class="form-icon"><i class="fas fa-phone"></i></span>
+                </div>
+                <div class="form-group-modern">
+                    <textarea id="message" name="message" required placeholder=" " rows="5"></textarea>
+                    <label for="message">Your Message</label>
+                    <span class="form-icon"><i class="fas fa-comment-alt"></i></span>
+                </div>
+                <button type="submit" class="submit-btn-modern">
+                    <span>Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
 
     <!-- Social Media Section -->
     <div class="social-media">
@@ -1879,220 +533,7 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Fade-in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Testimonials rotation
-        const testimonials = [
-            {
-                text: "Kalpana's grace and confidence brought our event to life! Her energy was infectious and she kept the audience engaged throughout.",
-                author: "Star Events",
-                company: "Event Management Company"
-            },
-            {
-                text: "Made our wedding night magical and unforgettable! She knew exactly how to connect with our families and keep the celebration flowing.",
-                author: "Ritika & Rahul",
-                company: "Wedding Couple"
-            },
-            {
-                text: "Professional, vibrant, and a delight to work with. Her hosting added tremendous value to our corporate launch event.",
-                author: "Amit Khanna",
-                company: "XYZ Corp."
-            }
-        ];
-
-        let currentTestimonial = 0;
-
-        function updateTestimonial() {
-            const testimonial = testimonials[currentTestimonial];
-            document.querySelector('.testimonial-text').textContent = `"${testimonial.text}"`;
-            document.querySelector('.testimonial-author').textContent = testimonial.author;
-            document.querySelector('.testimonial-company').textContent = testimonial.company;
-            
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentTestimonial);
-            });
-        }
-
-        document.querySelectorAll('.dot').forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentTestimonial = index;
-                updateTestimonial();
-            });
-        });
-
-        // Auto-rotate testimonials
-        setInterval(() => {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            updateTestimonial();
-        }, 6000);
-
-        // Form submission (you'll need to add backend handling)
-        document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            e.target.reset();
-        });
-
-        // Smooth scroll for all internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Horizontal scroll functions for videos
-        function scrollVideos(direction) {
-            const container = document.querySelector('.videos-grid');
-            const scrollAmount = 500;
-            
-            if (direction === 'left') {
-                container.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            } else {
-                container.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Horizontal scroll functions for gallery
-        function scrollGallery(direction) {
-            const container = document.querySelector('.gallery-grid');
-            const scrollAmount = 450;
-            
-            if (direction === 'left') {
-                container.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            } else {
-                container.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Touch/swipe support for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        function handleVideoSwipe() {
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                scrollVideos('right');
-            }
-            if (touchEndX > touchStartX + swipeThreshold) {
-                scrollVideos('left');
-            }
-        }
-
-        function handleGallerySwipe() {
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                scrollGallery('right');
-            }
-            if (touchEndX > touchStartX + swipeThreshold) {
-                scrollGallery('left');
-            }
-        }
-
-        const videosGrid = document.querySelector('.videos-grid');
-        if (videosGrid) {
-            videosGrid.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            videosGrid.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleVideoSwipe();
-            });
-        }
-
-        const galleryGrid = document.querySelector('.gallery-grid');
-        if (galleryGrid) {
-            galleryGrid.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            galleryGrid.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleGallerySwipe();
-            });
-        }
-
-        // Hide scroll indicators after first interaction
-        const hideScrollIndicators = () => {
-            document.querySelectorAll('.scroll-indicator').forEach(indicator => {
-                indicator.style.opacity = '0';
-                indicator.style.transition = 'opacity 0.5s ease';
-            });
-        };
-
-        if (videosGrid) {
-            videosGrid.addEventListener('scroll', hideScrollIndicators, { once: true });
-        }
-        if (galleryGrid) {
-            galleryGrid.addEventListener('scroll', hideScrollIndicators, { once: true });
-        }
-    </script>
+    <!-- Custom JavaScript -->
+    <script src="app.js"></script>
 </body>
 </html>
